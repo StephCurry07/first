@@ -9,18 +9,14 @@ jobs:
 
     steps:
 
-
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-      - name: Install Python dependencies
-        run: pip install black flake8
-
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
+
       - name: Lint Code Base
         uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_JAVASCRIPT_ES: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
